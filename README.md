@@ -7,4 +7,4 @@ Steps to run this project:
    Visit  https://typeorm.io/#/ to see `ormconfig.json` example
 3. Setup database settings inside `ormconfig.json` file
 4. Run `npm start` command
-5. To run query and mutation visit `localhost:4000` command
+5. To run query and mutation visit `localhost:4000` 
