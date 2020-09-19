@@ -1,4 +1,4 @@
-# Awesome Project Build with TypeORM
+# Relationships between tables (Query and Mutation) in TypeORM
 
 Steps to run this project:
 
