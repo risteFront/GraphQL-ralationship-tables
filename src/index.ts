@@ -35,17 +35,29 @@ const typeDefs = `
 const resolvers: ResolverMap = {
   Query: {
     hello: (_: any, { name }: any) => `Hello ${name || "World"}`,
-    user: (_, { id }) => User.findByIds(id, { relations: ["profile"] }),
-    users: () => User.find(),
+    user: async (_, { id }) => {
+      const user = await User.findOne(id, { relations: ["profile"] });
+      console.log(user);
+      return user;
+    },
+    users: async () => {
+      const users = await User.find({ relations: ["profile"] });
+      console.log(users);
+      return users;
+    },
   },
   Mutation: {
     createUser: async (_, args) => {
       const profile = await Profile.save({ ...args.profile });
+      console.log(profile);
 
-      const user = await User.create({
+      const user = User.create({
         firstName: args.firstName,
         profileId: profile.id,
       });
+      await user.save();
+      console.log(user);
+
       return {
         ...user,
         profile,
